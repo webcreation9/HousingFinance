@@ -1,0 +1,788 @@
+/* ============================================
+   HERO — Overlapping Grid Style
+   ============================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #f0faf4;
+}
+
+/* ===== Full-bleed background image (right side) ===== */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65%;          /* image takes right 65% */
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(240, 250, 244, 1) 0%,
+    rgba(240, 250, 244, 0.85) 15%,
+    rgba(240, 250, 244, 0) 50%
+  );
+  pointer-events: none;
+}
+
+/* ===== Grid container ===== */
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ===== Overlapping content card — frosted glass ===== */
+.hero-card {
+  position: relative;
+  z-index: 3;
+  max-width: 620px;
+  padding: 3rem 3rem 2.5rem;
+  border-radius: 24px;
+
+  /* Semi-transparent frosted background */
+  background: rgba(255, 255, 255, -0.45);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+
+  /* Glass edge highlights */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 30px 70px -20px rgba(1, 79, 34, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+
+  /* Overlap the image */
+  margin-right: -80px;
+
+  animation: cardEnter 0.7s ease-out;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+/* Subtle hover polish */
+.hero-card:hover {
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ============================================
+   CARD CONTENT
+   ============================================ */
+.hero-eyebrow {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(2, 128, 55, 0.12);
+  color: #028037;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.2px;
+  color: #014f22;
+  margin: 0 0 1.25rem;
+}
+
+.hero-accent {
+  color: #028037;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-accent::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  width: 100%;
+  height: 10px;
+  background: rgba(2, 128, 55, 0.25);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.hero-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #5a6b62;
+  margin: 0 0 1.75rem;
+}
+
+/* ===== Award badges ===== */
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 7px 13px;
+  background: #f0faf4;
+  border: 1px solid #d9e5de;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #014f22;
+}
+
+.hero-badge svg {
+  width: 14px;
+  height: 14px;
+  color: #028037;
+  flex-shrink: 0;
+}
+
+/* ===== CTAs ===== */
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 13px 26px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.hero-btn svg {
+  width: 17px;
+  height: 17px;
+  transition: transform 0.25s ease;
+}
+
+.hero-btn-primary {
+  background: #028037;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(2, 128, 55, 0.3);
+}
+
+.hero-btn-primary:hover {
+  background: #016a2d;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(2, 128, 55, 0.4);
+}
+
+.hero-btn-primary:hover svg {
+  transform: translateX(4px);
+}
+
+.hero-btn-secondary {
+  background: transparent;
+  color: #028037;
+  border: 1.5px solid #028037;
+}
+
+.hero-btn-secondary:hover {
+  background: #028037;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ===== Trust line ===== */
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #5a6b62;
+  margin: 0;
+}
+
+.hero-trust svg {
+  width: 15px;
+  height: 15px;
+  color: #028037;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   FLOATING CARDS (on image side)
+   ============================================ */
+.hero-floats {
+  position: relative;
+  height: 100%;
+  min-height: 400px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-float-card {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(1, 79, 34, 0.18);
+  padding: 14px 18px;
+  animation: float 4s ease-in-out infinite;
+  pointer-events: auto;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Rate card — top right */
+.hero-float-rate {
+  top: 10%;
+  right: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 130px;
+}
+
+.hero-float-label {
+  font-size: 0.7rem;
+  color: #5a6b62;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hero-float-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #028037;
+  line-height: 1;
+}
+
+.hero-float-sub {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Approval card — bottom left of image side */
+.hero-float-approval {
+  bottom: 12%;
+  right: 25%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation-delay: 1.5s;
+}
+
+.hero-float-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(2, 128, 55, 0.12);
+  color: #028037;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-float-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hero-float-approval strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #014f22;
+  font-weight: 700;
+}
+
+.hero-float-approval span {
+  font-size: 0.75rem;
+  color: #5a6b62;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet — smaller overlap */
+@media (max-width: 1100px) {
+  .hero-card {
+    padding: 2.5rem 2rem 2rem;
+    margin-right: -50px;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablet — stack layout */
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-bg {
+    width: 100%;
+    height: 50%;
+    top: 0;
+    bottom: auto;
+  }
+
+  .hero-bg-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(240, 250, 244, 0) 0%,
+      rgba(240, 250, 244, 0.5) 60%,
+      rgba(240, 250, 244, 1) 100%
+    );
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    padding: 18rem 1.5rem 3rem; /* push card below the image area */
+    gap: 0;
+  }
+
+  .hero-card {
+    margin-right: 0;
+    max-width: 100%;
+    padding: 2.25rem 1.75rem 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  /* Hide floats on tablet to keep clean */
+  .hero-floats {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .hero-bg {
+    height: 42%;
+  }
+
+  .hero-grid {
+    padding: 14rem 1rem 2.5rem;
+  }
+
+  .hero-card {
+    padding: 1.75rem 1.25rem 1.5rem;
+    border-radius: 18px;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+    letter-spacing: -0.8px;
+  }
+
+  .hero-description {
+    font-size: 0.92rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  .hero-badges {
+    gap: 0.5rem;
+  }
+
+  .hero-badge {
+    font-size: 0.72rem;
+    padding: 6px 11px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+  .hero-grid {
+    padding: 12rem 0.85rem 2rem;
+  }
+
+  .hero-title {
+    font-size: 1.65rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    padding: 5px 11px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1440px) {
+  .hero-grid {
+    max-width: 1500px;
+    gap: 3rem;
+  }
+
+  .hero-card {
+    padding: 3.5rem 3.5rem 3rem;
+    margin-right: -120px;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+  }
+}
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(240, 250, 244, 0.85) 0%,
+    rgba(240, 250, 244, 0.55) 20%,
+    rgba(240, 250, 244, 0) 55%
+  );
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 7px 13px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(217, 229, 222, 0.7);
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #014f22;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+/* ============================================
+   FEATURE GRID — "How we help" section
+   ============================================ */
+.features {
+  position: relative;
+  /* width: 100%; */
+  padding: 5rem 2rem 6rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f0faf4 100%);
+}
+
+.features-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===== Section header ===== */
+.features-head {
+  max-width: 720px;
+  margin: 0 auto 3.5rem;
+  text-align: center;
+}
+
+.features-eyebrow {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(2, 128, 55, 0.1);
+  color: #028037;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+}
+
+.features-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #014f22;
+  margin: 0 0 1rem;
+}
+
+.features-accent {
+  background: linear-gradient(135deg, #028037 0%, #4ade80 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.features-subtitle {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #5a6b62;
+  margin: 0;
+}
+
+/* ===== Grid ===== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ===== Card ===== */
+.feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.75rem 1.75rem;
+  background: #ffffff;
+  border: 1px solid #e4efe8;
+  border-radius: 20px;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #028037, #4ade80);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -16px rgba(1, 79, 34, 0.18);
+  border-color: #c8e6d3;
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ===== Icon ===== */
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(2, 128, 55, 0.12), rgba(74, 222, 128, 0.12));
+  color: #028037;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.06) rotate(-2deg);
+  background: linear-gradient(135deg, rgba(2, 128, 55, 0.2), rgba(74, 222, 128, 0.2));
+}
+
+/* ===== Title / desc ===== */
+.feature-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #014f22;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.3px;
+}
+
+.feature-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #5a6b62;
+  margin: 0 0 1.5rem;
+  flex: 1;
+}
+
+/* ===== CTA link ===== */
+.feature-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #028037;
+  margin-top: auto;
+  transition: gap 0.25s ease;
+}
+
+.feature-link svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.25s ease;
+}
+
+.feature-card:hover .feature-link {
+  gap: 0.6rem;
+}
+
+.feature-card:hover .feature-link svg {
+  transform: translateX(3px);
+}
+
+/* ============================================
+   RESPONSIVE — Feature grid
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .features {
+    padding: 4rem 1.5rem 5rem;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .features-title {
+    font-size: 2.1rem;
+  }
+
+  .features-head {
+    margin-bottom: 3rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .features {
+    padding: 3rem 1rem 4rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .features-title {
+    font-size: 1.75rem;
+    letter-spacing: -0.6px;
+  }
+
+  .features-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .features-head {
+    margin-bottom: 2.5rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem 1.25rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .feature-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .feature-title {
+    font-size: 1.05rem;
+  }
+
+  .feature-desc {
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+  .features-title {
+    font-size: 1.55rem;
+  }
+
+  .feature-card {
+    padding: 1.35rem 1.1rem;
+  }  
+}
+
+/* Large screens */
+@media (min-width: 1440px) {
+  .features-container {
+    max-width: 1500px;
+  }
+
+  .features-grid {
+    gap: 1.75rem;
+  }
+
+  .features-title {
+    font-size: 2.75rem;
+  }
+
+  .feature-card {
+    padding: 2.25rem 2rem 2rem;
+  }
+}
